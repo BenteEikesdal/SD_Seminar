@@ -8,12 +8,14 @@ page 50123 "CSD Seminar Report Selection"
     PageType = Worksheet;
     SaveValues = true;
     SourceTable = "CSD Seminar Report Selections";
+    UsageCategory = Administration;
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            field(ReportUsage2;ReportUsage2)
+            field(ReportUsage2; ReportUsage2)
             {
                 Caption = 'Usage';
                 OptionCaption = 'Registration';
@@ -26,14 +28,14 @@ page 50123 "CSD Seminar Report Selection"
             }
             repeater(General)
             {
-                field(Sequence;Sequence)
+                field(Sequence; Sequence)
                 {
                 }
-                field("Report ID";"Report ID")
+                field("Report ID"; "Report ID")
                 {
                     LookupPageID = Objects;
                 }
-                field("Report Name";"Report Name")
+                field("Report Name"; "Report Name")
                 {
                     DrillDown = false;
                     LookupPageID = Objects;
@@ -42,11 +44,11 @@ page 50123 "CSD Seminar Report Selection"
         }
         area(factboxes)
         {
-            systempart("Links";Links)
+            systempart("Links"; Links)
             {
                 Visible = false;
             }
-            systempart("Notes";Notes)
+            systempart("Notes"; Notes)
             {
                 Visible = false;
             }
@@ -57,7 +59,7 @@ page 50123 "CSD Seminar Report Selection"
     {
     }
 
-    trigger OnNewRecord(BelowxRec : Boolean);
+    trigger OnNewRecord(BelowxRec: Boolean);
     begin
         NewRecord;
     end;
@@ -68,14 +70,14 @@ page 50123 "CSD Seminar Report Selection"
     end;
 
     var
-        ReportUsage2 : Option Registration;
+        ReportUsage2: Option Registration;
 
     local procedure SetUsageFilter();
     begin
         FILTERGROUP(2);
         CASE ReportUsage2 OF
-          ReportUsage2::Registration:
-            SETRANGE(Usage,Usage::Registration);
+            ReportUsage2::Registration:
+                SETRANGE(Usage, Usage::Registration);
         end;
         FILTERGROUP(0);
     end;
