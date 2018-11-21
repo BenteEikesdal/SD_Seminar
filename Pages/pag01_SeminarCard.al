@@ -1,4 +1,4 @@
-page 50101"CSD Seminar Card"
+page 50101 "CSD Seminar Card"
 // CSD1.00 - 2018-01-01 - D. E. Veloper
 // Chapter 5 - Lab 2-4 & Lab 2-5
 
@@ -14,7 +14,7 @@ page 50101"CSD Seminar Card"
             {
                 field("No."; "No.")
                 {
-                    AssistEdit=true;
+                    AssistEdit = true;
                     trigger OnAssistEdit();
                     begin
                         if AssistEdit then
@@ -27,7 +27,7 @@ page 50101"CSD Seminar Card"
                 field("Search Name"; "Search Name")
                 {
                 }
-                field("Seminar Duration";"Seminar Duration")
+                field("Seminar Duration"; "Seminar Duration")
                 {
                 }
                 field("Minimum Participants"; "Minimum Participants")
@@ -76,13 +76,45 @@ page 50101"CSD Seminar Card"
             {
                 action("Co&mments")
                 {
-                    RunObject=page"CSD Seminar Comment Sheet";
-                    RunPageLink = "Table Name"=const(Seminar),"No."=field("No.");
+                    RunObject = page "CSD Seminar Comment Sheet";
+                    RunPageLink = "Table Name" = const (Seminar), "No." = field ("No.");
                     Image = Comment;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
                 }
+                action("Ledger Entries")
+                {
+                    Caption = 'Ledger Entries';
+                    RunObject = page "CSD Seminar Ledger Entries";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ShortcutKey = "Ctrl+F7";
+                    Image = WarrantyLedger;
+                }
+                action("&Registrations")
+                {
+                    Caption = 'Registration';
+                    RunObject = page "CSD Seminar Registration List";
+                    RunPageLink = "Seminar No." = field ("No.");
+                    Image = Timesheet;
+                    Promoted = true;
+                    PromotedCategory = Process;
+
+                }
+            }
+        }
+        area(Processing)
+        {
+            action("Seminar Registration")
+            {
+                RunObject = page "CSD Seminar Registration";
+                RunPageLink = "Seminar No." = field ("No.");
+                RunPageMode = Create;
+                Image = NewTimesheet;
+                Promoted = true;
+                PromotedCategory = New;
             }
         }
     }
